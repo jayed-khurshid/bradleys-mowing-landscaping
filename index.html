@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bradley's Mowing &amp; Landscaping - Mobile Homepage</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Google Fonts: Poppins & Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Poppins:wght@500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandForest: '#075B1D',
+            brandForestDark: '#053e14',
+            brandForestUltraDark: '#03260c',
+            brandGreenAccent: '#24B80B',
+            brandGreenLime: '#74DD3A',
+            brandGreenLight: '#6EDB5A',
+            brandSurface: '#FAFAF7',
+            brandInputBg: '#F2FFEA',
+          },
+          fontFamily: {
+            poppins: ['Poppins', 'sans-serif'],
+            inter: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #FAFAF7;
+      color: #1F2937;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, h4, .font-heading {
+      font-family: 'Poppins', sans-serif;
+    }
+    .hero-pattern {
+      background-color: #075B1D;
+      background-image: radial-gradient(rgba(36, 184, 11, 0.15) 1px, transparent 0);
+      background-size: 24px 24px;
+    }
+    .custom-input {
+      background-color: #F2FFEA;
+      border: 1.5px solid #9ed390;
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      font-size: 0.925rem;
+      width: 100%;
+      color: #1F2937;
+      transition: all 0.2s ease;
+    }
+    .custom-input::placeholder {
+      color: #526d4b;
+      opacity: 0.85;
+    }
+    .custom-input:focus {
+      outline: none;
+      border-color: #24B80B;
+      box-shadow: 0 0 0 3px rgba(36, 184, 11, 0.2);
+      background-color: #ffffff;
+    }
+    .pill-btn-green {
+      background-color: #24B80B;
+      color: #075B1D;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      border-radius: 9999px;
+      transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: 0 4px 14px rgba(36, 184, 11, 0.35);
+    }
+    .pill-btn-green:hover {
+      background-color: #74DD3A;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(36, 184, 11, 0.45);
+    }
+    .pill-btn-green:active {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="max-w-md mx-auto min-h-screen bg-[#FAFAF7] shadow-2xl relative overflow-x-hidden border-x border-gray-200">
+<!-- 1. HEADER & TOP NAVIGATION -->
+<header class="sticky top-0 z-50 bg-black/95 backdrop-blur-md px-4 py-3 flex items-center justify-between shadow-md border-b border-white/10">
+<!-- Call Now Button (Left) -->
+<a aria-label="Call Bradley's Mowing" class="w-10 h-10 rounded-full bg-[#24B80B] flex items-center justify-center text-black shadow-md hover:bg-[#74DD3A] transition-colors flex-shrink-0" href="tel:1405996858">
+  <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path></svg>
+</a>
+<!-- Brand Logo (Middle) -->
+<a href="#" class="flex items-center justify-center flex-1 mx-2">
+  <img src="./logo-white.png" alt="Bradley's Mowing & Landscaping" class="h-8 w-auto object-contain" />
+</a>
+<!-- Hamburger Menu Button (Right) -->
+<button aria-label="Toggle navigation menu" class="w-10 h-10 flex flex-col items-center justify-center space-y-1.5 focus:outline-none p-1 rounded-lg hover:bg-white/10 transition-colors flex-shrink-0" id="menu-open-btn" onclick="document.getElementById('mobile-drawer').classList.remove('translate-x-full'); document.getElementById('drawer-backdrop').classList.remove('opacity-0', 'pointer-events-none');">
+  <span class="w-6 h-[3px] bg-[#24B80B] rounded-full transition-transform"></span>
+  <span class="w-6 h-[3px] bg-[#24B80B] rounded-full transition-transform"></span>
+  <span class="w-6 h-[3px] bg-[#24B80B] rounded-full transition-transform"></span>
+</button>
+<div class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300" id="drawer-backdrop" onclick="document.getElementById('mobile-drawer').classList.add('translate-x-full'); this.classList.add('opacity-0', 'pointer-events-none');"></div>
+<nav class="fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-black text-white z-50 shadow-2xl p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-in-out border-l border-[#24B80B]/30" id="mobile-drawer">
+  <div class="space-y-6">
+    <div class="flex items-center justify-between pb-4 border-b border-white/10">
+      <div class="flex items-center space-x-2">
+        <img src="./logo-white.png" alt="Bradley's Mowing" class="h-7 w-auto object-contain" />
+      </div>
+      <button class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-gray-300 hover:text-white hover:bg-white/20 transition-colors" id="menu-close-btn" onclick="document.getElementById('mobile-drawer').classList.add('translate-x-full'); document.getElementById('drawer-backdrop').classList.add('opacity-0', 'pointer-events-none');">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+      </button>
+    </div>
+    <ul class="space-y-3 font-poppins text-sm font-semibold">
+      <li><a class="flex items-center justify-between p-2.5 rounded-xl hover:bg-white/10 text-white hover:text-[#74DD3A] transition-colors" href="#quote-form" onclick="document.getElementById('mobile-drawer').classList.add('translate-x-full'); document.getElementById('drawer-backdrop').classList.add('opacity-0', 'pointer-events-none');"><span>Request Free Quote</span><span class="text-[#24B80B]">→</span></a></li>
+      <li><a class="flex items-center justify-between p-2.5 rounded-xl hover:bg-white/10 text-white hover:text-[#74DD3A] transition-colors" href="#services" onclick="document.getElementById('mobile-drawer').classList.add('translate-x-full'); document.getElementById('drawer-backdrop').classList.add('opacity-0', 'pointer-events-none');"><span>Our Services</span><span class="text-xs text-gray-400">›</span></a></li>
+      <li><a class="flex items-center justify-between p-2.5 rounded-xl hover:bg-white/10 text-white hover:text-[#74DD3A] transition-colors" href="#about" onclick="document.getElementById('mobile-drawer').classList.add('translate-x-full'); document.getElementById('drawer-backdrop').classList.add('opacity-0', 'pointer-events-none');"><span>About Us</span><span class="text-xs text-gray-400">›</span></a></li>
+      <li><a class="flex items-center justify-between p-2.5 rounded-xl hover:bg-white/10 text-white hover:text-[#74DD3A] transition-colors" href="#reviews" onclick="document.getElementById('mobile-drawer').classList.add('translate-x-full'); document.getElementById('drawer-backdrop').classList.add('opacity-0', 'pointer-events-none');"><span>Client Reviews</span><span class="text-xs text-gray-400">★</span></a></li>
+      <li><a class="flex items-center justify-between p-2.5 rounded-xl hover:bg-white/10 text-white hover:text-[#74DD3A] transition-colors" href="#why-choose" onclick="document.getElementById('mobile-drawer').classList.add('translate-x-full'); document.getElementById('drawer-backdrop').classList.add('opacity-0', 'pointer-events-none');"><span>Why Choose Us</span><span class="text-xs text-gray-400">›</span></a></li>
+      <li><a class="flex items-center justify-between p-2.5 rounded-xl hover:bg-white/10 text-white hover:text-[#74DD3A] transition-colors" href="#projects" onclick="document.getElementById('mobile-drawer').classList.add('translate-x-full'); document.getElementById('drawer-backdrop').classList.add('opacity-0', 'pointer-events-none');"><span>Recent Projects</span><span class="text-xs text-gray-400">›</span></a></li>
+      <li><a class="flex items-center justify-between p-2.5 rounded-xl hover:bg-white/10 text-white hover:text-[#74DD3A] transition-colors" href="#contact" onclick="document.getElementById('mobile-drawer').classList.add('translate-x-full'); document.getElementById('drawer-backdrop').classList.add('opacity-0', 'pointer-events-none');"><span>Contact Us</span><span class="text-xs text-gray-400">›</span></a></li>
+    </ul>
+  </div>
+  <div class="space-y-3 pt-6 border-t border-white/10">
+    <a class="pill-btn-green w-full py-3 px-4 flex items-center justify-center space-x-2 text-xs uppercase tracking-wider text-center shadow-lg" href="tel:1405996858"><span>📞</span><span>Call (140) 599-6858</span></a>
+    <p class="text-[11px] text-center text-gray-400 font-inter">El Reno Premier Lawn & Landscaping</p>
+  </div>
+</nav>
+</header>
+<!-- 2. HERO SECTION -->
+<section class="text-white px-5 pt-8 pb-12 relative overflow-hidden bg-cover bg-center" style="background-image: linear-gradient(135deg, rgba(0,0,0,0.88) 0%, rgba(7,91,29,0.80) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuAukNNuFhEaAzaiEd8iw6dkVpFF78T8v0pvizoQxqU1oZpSGUHIKCXyQZzzeVn25GMyxUX6Z7KsHbO5_Z9e2HSBoH1hVYLY6835CZ8WqYWoWjQlD1PBpH-t753cQ2fUbCNaa3nlrI9UNEAUEoWOVKXX0YGS5Sr8OrPw-pgfDS7ceMa95JYHl-SXP0PNfcopY-QWlAeeZUP1_bfk3lOqBAAnnCi4kOG1awg-AgxKy7WsIfkTDqyfBq2rnOYOgaIQwYDyRQHKuOXUL-U');">
+<!-- Subtle glow orb -->
+<div class="absolute -top-12 -right-12 w-64 h-64 bg-[#24B80B]/15 rounded-full blur-3xl pointer-events-none"></div>
+<!-- Google Trust Badge -->
+<div class="inline-flex items-center bg-black/40 backdrop-blur border border-white/15 rounded-full px-3.5 py-1.5 mb-5 shadow-sm">
+<!-- Google 'G' Icon -->
+<svg class="w-4 h-4 mr-2" viewbox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"></path>
+</svg>
+<span class="text-xs font-bold text-white mr-1.5">4.8 Rating</span>
+<div class="flex text-amber-400 space-x-0.5 text-xs">
+<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+</div>
+</div>
+<!-- Main Headline -->
+<h1 class="text-3xl sm:text-4xl font-extrabold font-poppins text-white leading-[1.12] tracking-tight mb-3">
+  Transforming<br/>
+  Landscapes In The<br/>
+  Marion, IL Area
+</h1>
+<!-- Subheadline -->
+<p class="text-xs sm:text-sm font-normal text-white/90 leading-relaxed mb-6 font-inter">
+  Bradley's Mowing &amp; Landscaping offers a variety of landscaping &amp; hardscaping services in the Marion, Herrin, Carterville, Johnston City, Carbondale, and Makanda, Illinois area.
+</p>
+<!-- Primary CTA Button -->
+<a class="pill-btn-green w-full block py-3.5 px-6 text-center text-sm uppercase tracking-wide mb-6 font-bold" href="#quote-form">
+  Click Here To Request A Quote
+</a>
+<!-- 3 Trust Badges Row (Exact icons from reference) -->
+<div class="flex flex-wrap items-center justify-between gap-2 py-3 px-2 mb-6">
+  <div class="flex items-center gap-1.5">
+    <div class="w-6 h-6 rounded-full bg-[#74DD3A] flex items-center justify-center text-emerald-950 text-xs shadow">📍</div>
+    <span class="text-[11px] font-bold text-white">Locally Owned</span>
+  </div>
+  <div class="flex items-center gap-1.5">
+    <div class="w-6 h-6 rounded-full bg-[#74DD3A] flex items-center justify-center text-emerald-950 text-xs shadow">📄</div>
+    <span class="text-[11px] font-bold text-white">Licensed &amp; Insured</span>
+  </div>
+  <div class="flex items-center gap-1.5">
+    <div class="w-6 h-6 rounded-full bg-[#74DD3A] flex items-center justify-center text-emerald-950 text-xs shadow">🤝</div>
+    <span class="text-[11px] font-bold text-white">Satisfaction Guaranteed</span>
+  </div>
+</div>
+<!-- Hero Photography Container with Overlapping Owner Badge on Top -->
+<div class="relative pt-6">
+  <!-- Owner Callout Badge Overlapping the top of photo card -->
+  <div class="absolute -top-1 left-2 z-20 flex items-center gap-2.5 bg-white/95 backdrop-blur-md p-1.5 rounded-2xl shadow-xl border border-white/60">
+    <img alt="Bradley Davis - Owner" class="w-12 h-12 rounded-full object-cover border-3 border-[#74DD3A] flex-shrink-0 shadow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBO6KTqOHYtrjjqwtvCDjlesoJUxEteRMqA1JHiS06Lw8dbjda_IGhe1IQ1Uy26ai9ssrHXPAlSJJ3jYZ8nhUP6xF5ZBocxv3GN-n0ikv9VpplxEGQXJeKk_xdHsmt19daeUWWo4qLaojJVMp_2CdcMNW5VIyAl54eydaeV01bNe8E9pTsK2WPKD0EhdxKCkf3GcvzReSvocfoMy_hhrcDnGln-3UstzL-0mQXxuSxZyTUC82o5H5BnG3bSSZD2_-CUgTtpdGjxlKw" />
+    <div class="bg-[#74DD3A] text-emerald-950 px-3 py-1.5 rounded-xl shadow flex flex-col justify-center">
+      <p class="font-poppins font-bold text-gray-950 text-xs leading-tight">Bradley Davis</p>
+      <p class="text-[10px] text-emerald-950 font-medium leading-tight">Owner of Bradley's Mowing &amp; Landscaping</p>
+    </div>
+  </div>
+  <!-- Photo Card -->
+  <div class="rounded-2xl overflow-hidden shadow-2xl border border-white/20">
+    <img alt="Modern residential home with clean stone-edged flower beds and manicured lawn" class="w-full h-56 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXPJovES7aVLXAxsZF83ClwXDRh6SzHQoAQabKgbk1JSJXEIx9SUtKDUhwLG5fqc_yODDi6cehDnukFQAPmcaK1rIB81Xx5soNCrMvfpTfokTjcSun0gF7FTnnlssgc4q-dImoETF_Am0nMx80nyi--Bby10-8qDBB13hvP2RrO0TJNrtwTP-QEZXX0RcTLbfNSBF90Xt_Mxl2YcA_7ILMuFhE6hbu1q3TOnEWBykfkCMTpg2UoUVQub7tXI2mLEJ96CGPJTu1Xt4" />
+  </div>
+</div>
+</section>
+<!-- 3. FIRST FREE QUOTE FORM -->
+<section class="px-5 -mt-5 relative z-20" id="quote-form">
+<div class="bg-white rounded-2xl p-5 shadow-xl border border-gray-100">
+<div class="text-center mb-4">
+<h2 class="text-2xl font-bold font-poppins text-gray-900 leading-tight">
+          Request A <span class="text-[#24B80B]">Free Quote</span>
+</h2>
+<p class="text-xs text-gray-500 mt-1 font-inter">
+          Fill Out The Form Below For A Free Estimate For Any Of Our Services.
+        </p>
+</div>
+<form class="space-y-3" onsubmit="event.preventDefault(); alert('Thank you! Bradley will contact you shortly.');">
+<div>
+<label class="block text-xs font-semibold text-gray-700 mb-1">Your Name</label>
+<input class="custom-input" placeholder="Your Name" required="" type="text"/>
+</div>
+<div>
+<label class="block text-xs font-semibold text-gray-700 mb-1">Services Desired</label>
+<input class="custom-input" placeholder="Lawn Mowing, Landscaping, Cleanups..." required="" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<div>
+<label class="block text-xs font-semibold text-gray-700 mb-1">Email Address</label>
+<input class="custom-input text-xs" placeholder="Email Address" required="" type="email"/>
+</div>
+<div>
+<label class="block text-xs font-semibold text-gray-700 mb-1">Phone Number</label>
+<input class="custom-input text-xs" placeholder="Phone Number" required="" type="tel"/>
+</div>
+</div>
+<div>
+<label class="block text-xs font-semibold text-gray-700 mb-1">Property Address</label>
+<input class="custom-input" placeholder="Property Address" required="" type="text"/>
+</div>
+<div>
+<label class="block text-xs font-semibold text-gray-700 mb-1">How did you hear about us?</label>
+<input class="custom-input" placeholder="Google, Referral, Facebook..." type="text"/>
+</div>
+<button class="w-full bg-[#24b80b] hover:bg-[#1ea009] text-black font-poppins font-extrabold py-3.5 mt-2 rounded-full text-sm uppercase tracking-wider text-center shadow-md transition-all active:scale-[0.99] cursor-pointer" type="submit">
+          Get Free Quote
+        </button>
+</form>
+</div>
+</section>
+<!-- 4. BUSINESS INTRODUCTION SECTION -->
+<section class="px-5 py-12 bg-[#FAFAF7]" id="about">
+<!-- Porch / Landscaping Image -->
+<div class="rounded-2xl overflow-hidden shadow-md mb-6 border border-gray-200">
+<img alt="High-end residential front porch entrance with masonry and stone mulch" class="w-full h-52 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAz8vO2DTio8ZX1Q1hsPJ57rEujKJP75-qys0ZwaKAIBD9OHTXmmKayWKGi-W_wGCR5_iSexjmNuqQrOJDhJsEgRlexbU3GStFXDw5KFnVtxiPR1YiR78o6Q6U_nXB1feZRDpyv9FD7rC30yYpXPaObpvMRc84YeCjm-ylhEXQxtfh2vygD8rbjYn6Rz7Aqlum3LmEmibHhzCOwZQWa-vbkw9TsZcABSA3iXVgFspjR8kO0-2-wHgyPLbCHrGnsFgTsoKd7hkwpN_I"/>
+</div>
+<!-- Intro Text -->
+<div class="space-y-4">
+<h2 class="text-2xl font-bold font-poppins text-gray-900 leading-snug">
+        The Local Landscaper <span class="text-[#24B80B]">For You</span>
+</h2>
+<p class="text-xs leading-relaxed text-gray-600 font-inter">
+        Bradley's Mowing &amp; Landscaping is here for all your landscaping needs. With years of experience, our family-owned company delivers only the highest quality of services and will treat you as if you were family every step of the way.
+      </p>
+<p class="text-xs leading-relaxed text-gray-600 font-inter">
+        Our crew specializes in professional landscaping for properties of any size, creating stunning outdoor aesthetics with thoughtfully designed plant arrangements and greenery, and full-service hardscape construction to transform your outdoor living space.
+      </p>
+<p class="text-xs leading-relaxed text-gray-600 font-inter">
+        When hiring us for your landscaping needs, we will do the job as efficiently as possible and leave you with the landscape of your dreams.
+      </p>
+<div class="pt-2">
+<a class="pill-btn-green inline-block py-3 px-6 text-xs uppercase tracking-wider" href="#quote-form">
+          Request A Free Quote
+        </a>
+</div>
+</div>
+</section>
+<!-- 5. OUR SERVICES SECTION -->
+<section class="bg-[#075B1D] px-5 py-12 text-white" id="services">
+<div class="text-center mb-7">
+<span class="text-xs font-semibold text-[#74DD3A] tracking-widest uppercase">Expert Solutions</span>
+<h2 class="text-2xl font-extrabold font-poppins mt-1">Our Services</h2>
+<div class="w-12 h-1 bg-[#24B80B] mx-auto mt-2 rounded-full"></div>
+</div>
+<div class="space-y-4">
+<!-- Card 1 -->
+<div class="relative rounded-2xl overflow-hidden shadow-lg border border-[#24B80B]/30 group cursor-pointer">
+<img alt="Landscape Planting" class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDonow7d8tiA1S8qaqr7N4HMFwDNPsvrhSs3NsMnhM6FibKZuFR0gOPpL2y549gGd6iKi227qIjOyteuFoFqR0npvJVNEDWoyY0k1yjbeFejKc5kRxpHAZZg9ZOU8XYef24Sfu9tu-plg4Jx0eqXLn7Lr5ESLw5jw3_0ldzubnjfjKUBztLWf3UnJ71ebKid6_tXixgd-ImhHgj-37Wq3A_nf8MTtiIbnSRo8I3nNsS5SvDCMChxrs_uPFmq1GiLKKIEs1Ybqd2OpQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#03260c] via-black/30 to-transparent"></div>
+<div class="absolute bottom-3 left-4 right-4 flex items-center justify-between">
+<span class="font-poppins font-bold text-base text-white tracking-wide">Landscape Planting</span>
+<span class="text-[#74DD3A] text-xl font-bold group-hover:translate-x-1 transition-transform">→</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="relative rounded-2xl overflow-hidden shadow-lg border border-[#24B80B]/30 group cursor-pointer">
+<img alt="Seasonal Cleanups" class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSoTabGMk9NJqxCs6KTKgXfBPKpxHcdmBs__wTKTqBaSCJijZV2dfGCVHXSRsDtlh8fr_P3gws1qhfXWK7G4S1QkukN_Kg7ix-gZge2Xef0rFMpInyIwFs_01TP2WvO8EC9NSr5s9On4DkKGMt4cC544Fn5_GSCuA839hlJyJblMqLo7zXophZBpg59mw5mTnzNFQXrxWesI0Qimt-XPq6GluI-ByywfrqtZLKRZPlujm0SOGZmY2hHyl2s3RKkoF8gtNdnGNPUXo"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#03260c] via-black/30 to-transparent"></div>
+<div class="absolute bottom-3 left-4 right-4 flex items-center justify-between">
+<span class="font-poppins font-bold text-base text-white tracking-wide">Seasonal Cleanups</span>
+<span class="text-[#74DD3A] text-xl font-bold group-hover:translate-x-1 transition-transform">→</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="relative rounded-2xl overflow-hidden shadow-lg border border-[#24B80B]/30 group cursor-pointer">
+<img alt="Landscape Construction" class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_Tv32TECj3kgYuXc3FqegyEEihk-tzwoFIPET_ESn38D6xGClExRaIVIkUJGDKOAUrO4Jl-gTsq7IG2DsC9SQQ830DkWCvVOy3kS4fH270IjLavwliVAOSIuP5eO7rbDjm5C9qlkccfK5aaZgC64B5wicyqjH8szl2CO5Dj53DNpqmQKnGWR-jcqNsP3N9hfJgGcPKMo-aDFN1T_7Tj7SSyoUpH_5uAObVaIaaJOJzDL-0JUlFMqbSUHYiRxdXpLtlnXrnkMX6Dk"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#03260c] via-black/30 to-transparent"></div>
+<div class="absolute bottom-3 left-4 right-4 flex items-center justify-between">
+<span class="font-poppins font-bold text-base text-white tracking-wide">Landscape Construction</span>
+<span class="text-[#74DD3A] text-xl font-bold group-hover:translate-x-1 transition-transform">→</span>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="relative rounded-2xl overflow-hidden shadow-lg border border-[#24B80B]/30 group cursor-pointer">
+<img alt="Lawn Mowing &amp; Maintenance" class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_dIqnT460BJ-mM2MNJZfua6tPL0ymj-4wGruQ-Mv2mc0YY0hp5i8fz3Hu-VfTgXLJA9ZVU1V5I-pIn1d6CnBUABJ1VJPYz54b42ZP27tS0eUg2phJl2xFQArAU1KigjgoJ4XqJewd6UoMLrAXLlSjSPEISuexJ4moNOrYjLIpwCwCI67V4mWuEwBXV_KR7_aWvTEZEBEzGOvevR2V0F2t8YGQBT_IDVVji-N6ntfFFHDb8GxMFmMRTc9GVJ5UGIcXXavJf7IFQUs"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#03260c] via-black/30 to-transparent"></div>
+<div class="absolute bottom-3 left-4 right-4 flex items-center justify-between">
+<span class="font-poppins font-bold text-base text-white tracking-wide">Lawn Mowing &amp; Maintenance</span>
+<span class="text-[#74DD3A] text-xl font-bold group-hover:translate-x-1 transition-transform">→</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. TESTIMONIALS SECTION -->
+<section class="px-5 py-12 bg-[#FAFAF7]" id="reviews">
+<div class="text-center mb-6">
+<h2 class="text-2xl font-bold font-poppins text-gray-900 leading-tight">
+        Hear From Our <span class="text-[#24B80B]">Happy Clients</span>
+</h2>
+<p class="text-xs text-gray-500 mt-1">Real local feedback from residential property owners</p>
+</div>
+<!-- Review Card -->
+<div class="bg-white rounded-2xl p-5 shadow-lg border border-gray-100">
+<div class="flex items-center space-x-3 mb-3">
+<div class="w-11 h-11 rounded-full bg-teal-600 text-white font-poppins font-bold text-sm flex items-center justify-center shadow">
+          WG
+        </div>
+<div>
+<h3 class="font-poppins font-bold text-gray-900 text-sm leading-tight">William Crocker</h3>
+<p class="text-[11px] text-gray-400">2 months ago</p>
+</div>
+</div>
+<!-- 5 Gold Stars -->
+<div class="flex text-amber-400 text-sm mb-3 space-x-1">
+<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+</div>
+<p class="text-xs text-gray-700 leading-relaxed font-inter italic">
+        "Bradley did a great job grading and seeding some sloped areas of my yard. He also backfilled behind some retaining walls where the dirt had settled. The crew was fast, polite, and very affordable. I will definitely use them in the future for additional projects."
+      </p>
+</div>
+</section>
+<!-- 7. WHY CHOOSE BRADLEY'S? SECTION -->
+<section class="bg-[#075B1D] px-5 py-12 text-white relative" id="why-choose">
+<div class="text-center mb-6">
+<h2 class="text-2xl font-extrabold font-poppins leading-tight">
+        Why Choose <span class="text-[#74DD3A]">Bradley's?</span>
+</h2>
+<p class="text-xs text-emerald-100/90 mt-1 font-inter">The Premier Landscaper For You</p>
+<div class="mt-4">
+<a class="pill-btn-green inline-block py-2.5 px-6 text-xs uppercase tracking-wider" href="#quote-form">
+          Request A Free Quote
+        </a>
+</div>
+</div>
+<div class="space-y-3.5 mt-6">
+<!-- Benefit Card 1 -->
+<div class="bg-white rounded-2xl p-4 text-gray-900 shadow-md flex items-start space-x-3.5 border-l-4 border-[#24B80B]">
+<div class="w-10 h-10 rounded-full bg-[#F2FFEA] flex items-center justify-center flex-shrink-0 text-xl">
+          🚚
+        </div>
+<div>
+<h3 class="font-poppins font-bold text-sm text-gray-900">Efficient</h3>
+<p class="text-xs text-gray-600 mt-1 leading-relaxed">
+            Our team will get in, get the job done right, and leave you with a beautiful landscape as efficiently as possible.
+          </p>
+</div>
+</div>
+<!-- Benefit Card 2 -->
+<div class="bg-white rounded-2xl p-4 text-gray-900 shadow-md flex items-start space-x-3.5 border-l-4 border-[#24B80B]">
+<div class="w-10 h-10 rounded-full bg-[#F2FFEA] flex items-center justify-center flex-shrink-0 text-xl">
+          🛡️
+        </div>
+<div>
+<h3 class="font-poppins font-bold text-sm text-gray-900">Professional</h3>
+<p class="text-xs text-gray-600 mt-1 leading-relaxed">
+            We've got the licensing, insurance, and equipment needed to provide the highest quality of service.
+          </p>
+</div>
+</div>
+<!-- Benefit Card 3 -->
+<div class="bg-white rounded-2xl p-4 text-gray-900 shadow-md flex items-start space-x-3.5 border-l-4 border-[#24B80B]">
+<div class="w-10 h-10 rounded-full bg-[#F2FFEA] flex items-center justify-center flex-shrink-0 text-xl">
+          🤝
+        </div>
+<div>
+<h3 class="font-poppins font-bold text-sm text-gray-900">Caring</h3>
+<p class="text-xs text-gray-600 mt-1 leading-relaxed">
+            Being a small family owned company, we treat our clients as family and will take care of you every step of the way.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- 8. FEATURED CAPABILITIES SECTION -->
+<section class="px-5 py-12 bg-[#FAFAF7]">
+<div class="space-y-3 mb-6">
+<h2 class="text-2xl font-bold font-poppins text-gray-900 leading-tight">
+<span class="text-[#24B80B]">Transform</span> Your Landscape &amp; Outdoor Living Space
+      </h2>
+<p class="text-xs text-gray-600 leading-relaxed font-inter">
+        Elevate your home's curb appeal and property value with tailored stone walkways, crisp floral bed edging, premium weed barrier installation, and nutrient-rich dark mulch. Every yard has unique contours—we engineer lasting beauty into every corner.
+      </p>
+<div>
+<a class="pill-btn-green inline-block py-2.5 px-6 text-xs uppercase tracking-wider" href="#quote-form">
+          Request A Free Quote
+        </a>
+</div>
+</div>
+<!-- Featured Image -->
+<div class="rounded-2xl overflow-hidden shadow-lg border border-gray-200">
+<img alt="Freshly completed curved flower bed with dark mulch and ornamental Japanese maple tree" class="w-full h-56 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqxfuddqghOvpNnOsCvJAXICNPo2eRBADJsrjcCEjjfoEM3Gj-5QAjlDSw4nlK1mc4b9uGGDTd1IUVEctPFTQhUxYZoT6-QmZEhyXUP43tz2zS_vwgiiOMhq2TFOZXjpnMMfmOELI4odLeGYCa4g--vgf79sRbCRHzeI6LzIIiuGlHnZBZyCDgf0kcxBlVOSXkYFw5541fDkiFPx5eGzOw6kxQfmm1DQWndeucdYTUTelW5oXdFJiwDksN9wIsVHdO_w2nayuOURM"/>
+</div>
+</section>
+<!-- 9. RECENT PROJECTS GALLERY -->
+<section class="px-5 py-12 bg-white" id="projects">
+<div class="text-center mb-7">
+<h2 class="text-2xl font-bold font-poppins text-gray-900 leading-snug">
+        Check Out Some Of <span class="text-[#24B80B]">Our Recent Projects</span>
+</h2>
+<p class="text-xs text-gray-500 mt-1">Real craftsmanship across Southern Illinois properties</p>
+</div>
+<!-- Vertically flowing stacked full-width project photographs -->
+<div class="space-y-4">
+<!-- Project 1 -->
+<div class="rounded-2xl overflow-hidden shadow-md border border-gray-200 group">
+<img alt="Modern white ranch house with gravel drip edge and pristine flower beds" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCThvH1uYwrvcf27VoGqyvXQxFkBGevNvpWWUTDdy-BtOnhtH6aUjZBHunaAq8905C-MYXzNoJ06v9TH3D1Zf3aIRv9KLWtSDR4052IURJiyh5wwdRMhN9r2vUzor11GcSNK8qhjJ6ynkGVS_lAkJMG_NAUSoe2YJ1wBd3FDyD0KzJ2MpMZNdDnYlOfUCbJK7bFD4TXCSI3J8qczZweSUYeX5sCuR50zOHToBry9buhIkw97fB0f2cHcTYwTs4bSQ9n7Xix-HRT7ik"/>
+<div class="p-3 bg-[#FAFAF7]">
+<p class="font-poppins font-semibold text-xs text-gray-800">Stone-Edged Flower Bed Installation</p>
+<p class="text-[11px] text-gray-500">Marion, IL • Clean pea gravel borders &amp; manicured shrubs</p>
+</div>
+</div>
+<!-- Project 2 -->
+<div class="rounded-2xl overflow-hidden shadow-md border border-gray-200 group">
+<img alt="High-end stone paver patio with tiered retaining wall" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmfjgRYCtXJuKqhBJMpKaVJpPjEs9KMwYI8BRVXM0xQMDHjGafQDbhfY54m1LDjBupY0Lh6NAFDJeuclX3IPzQ4UCVq0Pi9d3AE3KwFtIIStWVnkHG5aeQnuWUta_jN4w4VIPpNrYtaymM1FprJR8ZE6hr7r2C8IuP5Le3A7TaS3wMagTdi-eqgmHmuuqQY635Jrx51K_5XH1thQSAWMISckaCS3IthemwSfeeCc4BYC3z01x9wNXX7x5hgJhdDlsb82ebCNkSAvA"/>
+<div class="p-3 bg-[#FAFAF7]">
+<p class="font-poppins font-semibold text-xs text-gray-800">Custom Stone Paver Patio &amp; Retaining Wall</p>
+<p class="text-[11px] text-gray-500">Carterville, IL • Heavy-duty stone excavation</p>
+</div>
+</div>
+<!-- Project 3 -->
+<div class="rounded-2xl overflow-hidden shadow-md border border-gray-200 group">
+<img alt="Stone accent entryway with river rock landscaping and trimmed shrubs" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHGkvuG5SBdlOmhI-BBdh0bddN1RlY-RFM2CwDRtOtkyhGYAYcLtR1V7SNFrTGYbsYbqwIAdx8pgHv6QhqCsiArplHwrTHjSd-w7si-OvSh83UrWi6n0oBKvXa0nRU1XAkMigLebX7Mf1L6zqpCIEwjpdGI5f_3aNxOog7d6czhv_i8_GeUhzRvxG2JOur-Ib40TVwGxcCz-aQmbjdHQlOxTqrTLuQlcb4oEh-HRd8R_ro3XxBHN2ytxszeos_CdJBkzlte2I9TME"/>
+<div class="p-3 bg-[#FAFAF7]">
+<p class="font-poppins font-semibold text-xs text-gray-800">River Rock Entrance Landscaping</p>
+<p class="text-[11px] text-gray-500">Herrin, IL • Decorative masonry mulch border</p>
+</div>
+</div>
+<!-- Project 4 -->
+<div class="rounded-2xl overflow-hidden shadow-md border border-gray-200 group">
+<img alt="Striped emerald turf lawn with tiered flower islands" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuyY9auUZ2P-3eJ5sfgoYYlY4RVjwmBLUsZoB2_vWW2FIrk5BeBYsnTyh2nyKfvkq1SOYtbC1WhoJ6uuqJ3qu4tqyPuNt3y5UQoGMZjLs-_OT9c8pFD8SYLXNRmYDzChRW4v-ELiZTv9T7X1QAiqDLXYT44yb5pLDV8Pf0qpsKYDRYo9EyZecws7SRF7yjV4I2RPHKzgRxLR2g5pMfHkEFoywLPCnlEJqhLfs2wgeWN3akARZYsKISD2ZeUdwTWK8GyFhli8eSo04"/>
+<div class="p-3 bg-[#FAFAF7]">
+<p class="font-poppins font-semibold text-xs text-gray-800">Precision Striped Turf &amp; Weed Management</p>
+<p class="text-[11px] text-gray-500">Carbondale, IL • Routine weekly maintenance</p>
+</div>
+</div>
+<!-- Project 5 -->
+<div class="rounded-2xl overflow-hidden shadow-md border border-gray-200 group">
+<img alt="Circular paver patio with fire pit ring" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDq95bl9gZW9rNJJx2N7rRjT7tz4tAO7z-eYLqGC_9tb-Yy1O7fbVlkhZtR71k_eY-1vt9zjHv0z0ya9ny8u2qXNMEG9ueaHlp6DeigIYW9uSz7xciqtMLSQUzrl4sYnScifObxD6e7hF2MQIbMkfBgn5c8n-kzs3lCJiUMHeLGPJEbhgaLk0Z6JSdSirXzSkvc-3NEMvQQO4PC4zGJbV1lAfKsuKwG6R09bf7yhuwNXVc6Zks6h-CtdMN8ZD7cmp-GgomGIdK8RxM"/>
+<div class="p-3 bg-[#FAFAF7]">
+<p class="font-poppins font-semibold text-xs text-gray-800">Hardscape Fire Pit &amp; Outdoor Living Area</p>
+<p class="text-[11px] text-gray-500">Makanda, IL • Natural flagstone pavers</p>
+</div>
+</div>
+<!-- Project 6 -->
+<div class="rounded-2xl overflow-hidden shadow-md border border-gray-200 group">
+<img alt="Stepping stone pathway nestled in dark mulch and white landscape gravel" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5VbMrvtQEq-n9aVmK2vlLcpV4Cr8091er60NRE3jTnO2tOt_2Qtr1cacC2B8yxiV0BrCjk2MsvqdSZ2snWjwAGXU90ytHpybDDmx7ZwcCvs4BW5MHgeMZl70CA7Ycc_IHNWmn9HukSkgMg58kKNr9BfylyT_lmHxaAEivmzk9eZk5l8A2zaIMoBEqyjMZ64Bt6IyXEU7IxbxDSmr8yCIvmtoq8JKGkV_Onj2k6FAWUPHCVCYQK_tydaL_ucJ_Yn6YOk61EIPwXgw"/>
+<div class="p-3 bg-[#FAFAF7]">
+<p class="font-poppins font-semibold text-xs text-gray-800">Garden Stepping Stone Pathway</p>
+<p class="text-[11px] text-gray-500">Johnston City, IL • Dark cedar mulch replenishment</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 10. FINAL CONTACT & SECOND QUOTE FORM -->
+<section class="bg-[#053e14] px-5 py-12 text-white" id="contact">
+<div class="text-center mb-6">
+<h2 class="text-2xl font-bold font-poppins">
+        Contact <span class="text-[#74DD3A]">Bradley's</span> Today!
+      </h2>
+<p class="text-xs text-emerald-100/80 mt-1">Get fast answers or request your on-site estimate</p>
+</div>
+<!-- Direct Contact Details -->
+<div class="bg-[#03260c]/70 rounded-2xl p-4 border border-[#24B80B]/30 mb-8 space-y-3">
+<a class="flex items-center space-x-3 p-2 rounded-xl bg-white/5 hover:bg-white/10 transition-colors" href="tel:6188898748">
+<div class="w-10 h-10 rounded-full bg-[#24B80B] text-[#075B1D] flex items-center justify-center font-bold flex-shrink-0">
+          📞
+        </div>
+<div>
+<span class="text-[10px] text-emerald-200 uppercase tracking-wider block font-semibold">Call or Text</span>
+<span class="text-sm font-bold font-poppins text-white">(618) 889-8748</span>
+</div>
+</a>
+<a class="flex items-center space-x-3 p-2 rounded-xl bg-white/5 hover:bg-white/10 transition-colors" href="mailto:contact@bradleylawncare.com">
+<div class="w-10 h-10 rounded-full bg-[#24B80B] text-[#075B1D] flex items-center justify-center font-bold flex-shrink-0">
+          ✉️
+        </div>
+<div>
+<span class="text-[10px] text-emerald-200 uppercase tracking-wider block font-semibold">Email Us Directly</span>
+<span class="text-xs font-semibold font-poppins text-white">contact@bradleylawncare.com</span>
+</div>
+</a>
+</div>
+<!-- Embedded Second Quote Form -->
+<div class="bg-white rounded-2xl p-5 shadow-2xl border border-gray-100 text-gray-900">
+<div class="text-center mb-4">
+<h3 class="text-xl font-bold font-poppins text-gray-900">
+          Request A <span class="text-[#24B80B]">Free Quote</span>
+</h3>
+<p class="text-[11px] text-gray-500 mt-0.5">Prompt response guaranteed within 24 hours</p>
+</div>
+<form class="space-y-3" onsubmit="event.preventDefault(); alert('Estimate request submitted! We will reach out shortly.');">
+<div>
+<label class="block text-xs font-semibold text-gray-700 mb-1">Your Name</label>
+<input class="custom-input" placeholder="Your Name" required="" type="text"/>
+</div>
+<div>
+<label class="block text-xs font-semibold text-gray-700 mb-1">Services Desired</label>
+<input class="custom-input" placeholder="Lawn Mowing, Landscaping, Cleanups..." required="" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<div>
+<label class="block text-xs font-semibold text-gray-700 mb-1">Email</label>
+<input class="custom-input text-xs" placeholder="Email Address" required="" type="email"/>
+</div>
+<div>
+<label class="block text-xs font-semibold text-gray-700 mb-1">Phone</label>
+<input class="custom-input text-xs" placeholder="Phone Number" required="" type="tel"/>
+</div>
+</div>
+<div>
+<label class="block text-xs font-semibold text-gray-700 mb-1">Property Address</label>
+<input class="custom-input" placeholder="Property Address" required="" type="text"/>
+</div>
+<button class="w-full bg-[#24b80b] hover:bg-[#1ea009] text-black font-poppins font-extrabold py-3.5 mt-2 rounded-full text-sm uppercase tracking-wider text-center shadow-md transition-all active:scale-[0.99] cursor-pointer" type="submit">
+          Get Free Quote
+        </button>
+</form>
+</div>
+</section>
+<!-- 11. LOCATION & FOOTER -->
+<footer class="bg-black text-white px-5 pt-8 pb-10 border-t border-white/10">
+<div class="space-y-4 mb-6">
+<div class="flex items-center space-x-2.5">
+  <img src="./logo-white.png" alt="Bradley's Mowing & Landscaping" class="h-8 w-auto object-contain" />
+</div>
+  <div class="hidden w-8 h-8 rounded-xl bg-gradient-to-br from-[#075B1D] to-[#053e14] p-1.5 flex items-center justify-center border border-[#24B80B]/40 shadow-inner"><svg class="w-full h-full" fill="none" viewbox="0 0 36 36" xmlns="http://www.w3.org/2000/svg"><path d="M8 5C8 4.44772 8.44772 4 9 4H18C22.4183 4 26 7.58172 26 12C26 14.8858 24.4754 17.416 22.1895 18.8258C25.0442 20.1983 27 23.1198 27 26.5C27 30.6421 23.6421 34 19.5 34H9C8.44772 34 8 33.5523 8 33V5Z" fill="#24B80B"></path><path d="M13 10H18C19.6569 10 21 11.3431 21 13C21 14.6569 19.6569 16 18 16H13V10Z" fill="#03260c"></path><path d="M13 20H19.5C21.433 20 23 21.567 23 23.5C23 25.433 21.433 27 19.5 27H13V20Z" fill="#03260c"></path><path d="M20 7C22.5 10 24 14.5 19 18C23.5 16 26 11 20 7Z" fill="#74DD3A"></path></svg></div><div><span class="font-poppins font-black text-sm tracking-wide text-white block">BRADLEY'S</span><span class="font-poppins font-bold text-[8.5px] text-[#74DD3A] tracking-wider block">MOWING &amp; LANDSCAPING</span></div></div>
+<p class="text-xs text-gray-300 leading-relaxed">
+        Looking for a quality landscaper? Bradley's Mowing &amp; Landscaping offers a variety of landscaping services in <strong class="text-[#74DD3A]">Marion, Herrin, Carterville, Johnston City, Carbondale, and Makanda</strong>.
+      </p>
+<!-- Service Map graphic simulation -->
+<div class="rounded-xl overflow-hidden border border-[#24B80B]/30 relative bg-[#075B1D] p-3 text-center">
+<p class="text-[11px] font-semibold text-white mb-1">📍 Southern Illinois Service Coverage</p>
+<div class="flex flex-wrap justify-center gap-1.5 mt-2">
+<span class="px-2 py-0.5 rounded-full bg-[#053e14] text-[10px] text-[#74DD3A] border border-[#24B80B]/40">Marion</span>
+<span class="px-2 py-0.5 rounded-full bg-[#053e14] text-[10px] text-[#74DD3A] border border-[#24B80B]/40">Herrin</span>
+<span class="px-2 py-0.5 rounded-full bg-[#053e14] text-[10px] text-[#74DD3A] border border-[#24B80B]/40">Carterville</span>
+<span class="px-2 py-0.5 rounded-full bg-[#053e14] text-[10px] text-[#74DD3A] border border-[#24B80B]/40">Carbondale</span>
+<span class="px-2 py-0.5 rounded-full bg-[#053e14] text-[10px] text-[#74DD3A] border border-[#24B80B]/40">Makanda</span>
+<span class="px-2 py-0.5 rounded-full bg-[#053e14] text-[10px] text-[#74DD3A] border border-[#24B80B]/40">Johnston City</span>
+</div>
+</div>
+</div>
+<!-- Bottom Bar -->
+<div class="pt-6 border-t border-white/10 text-center text-[11px] text-gray-400 space-y-1">
+<p>© 2026 Bradley's Mowing &amp; Landscaping. All Rights Reserved.</p>
+<div class="flex justify-center space-x-3 text-[10px] text-gray-500 pt-1">
+<a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
+<span>•</span>
+<a class="hover:text-white transition-colors" href="#">Terms of Service</a>
+<span>•</span>
+<a class="hover:text-white transition-colors" href="tel:6188898748">Licensed &amp; Insured</a>
+</div>
+</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: #FAFAF7;
+    color: #1F2937;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+.custom-input {
+  background-color: #F2FFEA;
+  border: 1.5px solid #9ed390;
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  font-size: 0.925rem;
+  width: 100%;
+  color: #1F2937;
+  transition: all 0.2s ease;
+}
+
+.custom-input::placeholder {
+  color: #526d4b;
+  opacity: 0.85;
+}
+
+.custom-input:focus {
+  outline: none;
+  border-color: #24B80B;
+  box-shadow: 0 0 0 3px rgba(36, 184, 11, 0.2);
+  background-color: #ffffff;
+}
+
+.pill-btn-green {
+  background-color: #24B80B;
+  color: #075B1D;
+  font-weight: 700;
+  border-radius: 9999px;
+  transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 4px 14px rgba(36, 184, 11, 0.35);
+}
+
+.pill-btn-green:hover {
+  background-color: #74DD3A;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(36, 184, 11, 0.45);
+}
+
+.pill-btn-green:active {
+  transform: translateY(0);
+}
