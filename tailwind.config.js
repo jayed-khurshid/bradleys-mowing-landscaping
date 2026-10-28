@@ -23,7 +23,7 @@ module.exports = {
       },
       fontFamily: {
         display: ['var(--font-poppins)', 'Poppins', 'sans-serif'],
-        sans: ['var(--font-inter)', 'Inter', 'sans-serif'],
+        sans: ['var(--font-poppins)', 'Poppins', 'sans-serif'],
       },
       borderRadius: {
         '2xl': '16px',

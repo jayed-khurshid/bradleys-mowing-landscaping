@@ -1,4 +1,4 @@
-import { Poppins, Inter } from 'next/font/google';
+﻿import { Poppins } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -12,12 +12,6 @@ const poppins = Poppins({
   display: 'swap',
 });
 
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-inter',
-  display: 'swap',
-});
 
 export const metadata = {
   metadataBase: new URL('https://bradleysmowingllc.com'),
@@ -116,7 +110,7 @@ export default function RootLayout({ children }) {
   };
 
   return (
-    <html lang="en" className={`${poppins.variable} ${inter.variable} scroll-smooth`} suppressHydrationWarning>
+    <html lang="en" className={`${poppins.variable} scroll-smooth`} suppressHydrationWarning>
       <body className="min-h-screen bg-brand-surface font-sans text-gray-800 antialiased selection:bg-brand-cta selection:text-black flex flex-col pb-14 sm:pb-0" suppressHydrationWarning>
         <script
           type="application/ld+json"
