@@ -5,7 +5,7 @@ import ContactQuoteForm from '@/components/ContactQuoteForm';
 
 export const metadata = {
   title: "Contact Anthony Bradley | Bradley's Mowing & Landscaping LLC",
-  description: "Get in touch with Anthony Bradley at Bradley's Mowing & Landscaping LLC in El Reno, Oklahoma. Call (140) 599-6858 or submit an online estimate request.",
+  description: "Get in touch with Anthony Bradley at Bradley's Mowing & Landscaping LLC in El Reno, Oklahoma. Call (405) 996-8587 or submit an online estimate request.",
 };
 
 export default function ContactPage() {
