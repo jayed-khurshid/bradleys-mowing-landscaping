@@ -1,7 +1,17 @@
 'use client';
 
-import { useState } from 'react';
-import { CheckCircle2 } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { CheckCircle2, ChevronDown } from 'lucide-react';
+
+const serviceOptions = [
+  'Lawn Mowing & Maintenance',
+  'Landscaping & Bed Renovation',
+  'Yard Leveling & Minor Grading',
+  'Drainage Solutions & French Drains',
+  'Brush & Fence-Line Clearing',
+  'Commercial Grounds Care',
+  'Other / Complete Outdoor Makeover',
+];
 
 export default function QuoteForm() {
   const [formData, setFormData] = useState({
@@ -13,8 +23,22 @@ export default function QuoteForm() {
     hearAbout: '',
   });
 
+  const [selectOpen, setSelectOpen] = useState(false);
+  const selectRef = useRef(null);
+
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+
+  // Close custom dropdown on outside click
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (selectRef.current && !selectRef.current.contains(event.target)) {
+        setSelectOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,7 +53,7 @@ export default function QuoteForm() {
     <section id="quote-form" className="relative z-20 px-4 sm:px-6 -mt-14 sm:-mt-16 lg:-mt-20 max-w-[1280px] mx-auto">
       <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 shadow-2xl border border-gray-100">
         
-        {/* Title matching the reference screenshot */}
+        {/* Title */}
         <div className="text-center mb-6 sm:mb-8">
           <h2 className="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-gray-950 tracking-tight">
             Request A <span className="text-[#6EDB5A]">Free Quote</span>
@@ -54,7 +78,7 @@ export default function QuoteForm() {
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
             
-            {/* 3 COLUMNS × 2 ROWS (Exact layout from the screenshot) */}
+            {/* 3 COLUMNS × 2 ROWS */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 sm:gap-4">
               
               {/* Row 1, Col 1: Name */}
@@ -69,29 +93,58 @@ export default function QuoteForm() {
                 />
               </div>
 
-              {/* Row 1, Col 2: Services Desired */}
-              <div>
-                <select
-                  value={formData.service}
-                  onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                  className="w-full bg-[#F2FFEA] border border-[#9ed390] rounded-xl px-4 py-3 sm:py-3.5 text-sm font-medium text-gray-900 focus:outline-none focus:border-[#24B80B] focus:ring-2 focus:ring-[#24B80B]/25 transition-all appearance-none cursor-pointer"
-                  style={{
-                    color: formData.service ? '#111827' : '#526d4b',
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23526d4b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`,
-                    backgroundRepeat: 'no-repeat',
-                    backgroundPosition: 'right 1rem center',
-                    backgroundSize: '1.25rem',
-                  }}
+              {/* Row 1, Col 2: Services Desired (Branded Custom Dropdown Menu) */}
+              <div className="relative" ref={selectRef}>
+                <button
+                  type="button"
+                  onClick={() => setSelectOpen(!selectOpen)}
+                  className="w-full bg-[#F2FFEA] border border-[#9ed390] rounded-xl px-4 py-3 sm:py-3.5 text-sm font-medium text-left flex items-center justify-between focus:outline-none focus:border-[#24B80B] focus:ring-2 focus:ring-[#24B80B]/25 transition-all cursor-pointer"
                 >
-                  <option value="" disabled className="text-[#526d4b]">Services Desired</option>
-                  <option value="Lawn Mowing & Maintenance">Lawn Mowing & Maintenance</option>
-                  <option value="Landscaping & Bed Renovation">Landscaping & Bed Renovation</option>
-                  <option value="Yard Leveling & Minor Grading">Yard Leveling & Minor Grading</option>
-                  <option value="Drainage Solutions & French Drains">Drainage Solutions & French Drains</option>
-                  <option value="Brush & Fence-Line Clearing">Brush & Fence-Line Clearing</option>
-                  <option value="Commercial Grounds Care">Commercial Grounds Care</option>
-                  <option value="Other / Complete Outdoor Makeover">Other / Complete Outdoor Makeover</option>
-                </select>
+                  <span className={formData.service ? 'text-gray-900 font-semibold' : 'text-[#526d4b]'}>
+                    {formData.service || 'Services Desired'}
+                  </span>
+                  <ChevronDown className={`w-4 h-4 text-[#526d4b] transition-transform duration-200 ${selectOpen ? 'rotate-180' : ''}`} />
+                </button>
+
+                {/* Hidden native input for required validation */}
+                <input
+                  type="text"
+                  value={formData.service}
+                  required
+                  tabIndex={-1}
+                  className="sr-only"
+                  onChange={() => {}}
+                />
+
+                {/* Branded Dropdown Menu Popover */}
+                {selectOpen && (
+                  <div className="absolute top-full left-0 right-0 mt-1.5 bg-white border border-[#9ed390] rounded-2xl shadow-xl z-50 overflow-hidden py-1.5 animate-fadeIn">
+                    <div className="px-3 py-2 text-xs font-bold uppercase tracking-wider text-[#526d4b] bg-[#F2FFEA]/70 border-b border-[#9ed390]/40">
+                      Select A Service
+                    </div>
+                    {serviceOptions.map((opt) => {
+                      const isSelected = formData.service === opt;
+                      return (
+                        <button
+                          key={opt}
+                          type="button"
+                          onClick={() => {
+                            setFormData({ ...formData, service: opt });
+                            setSelectOpen(false);
+                          }}
+                          className={`w-full text-left px-4 py-2.5 text-sm font-medium transition-colors flex items-center justify-between cursor-pointer ${
+                            isSelected
+                              ? 'bg-[#24B80B] text-black font-bold'
+                              : 'text-gray-800 hover:bg-[#F2FFEA] hover:text-[#075B1D]'
+                          }`}
+                        >
+                          <span>{opt}</span>
+                          {isSelected && <CheckCircle2 className="w-4 h-4 text-black" />}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
 
               {/* Row 1, Col 3: Email */}
